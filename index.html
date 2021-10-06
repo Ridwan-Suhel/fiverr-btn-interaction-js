@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Interaction</title>
+  </head>
+  <style>
+    .container {
+      width: 85%;
+      margin: 0 auto;
+    }
+    h3 {
+      text-align: center;
+    }
+    .button {
+      text-align: center;
+      padding: 10px 0px 100px;
+    }
+    .button a {
+      width: 36px;
+      height: 36px;
+      display: inline-block;
+      background: transparent;
+      z-index: 2;
+      padding: 10px;
+      border-radius: 100%;
+      position: relative;
+
+      color: #333;
+    }
+    .button a::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: -2px;
+      left: -2px;
+      border-radius: 100%;
+      border: 2px solid #f05146;
+      z-index: -1;
+
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(1);
+    }
+    .button a.test::before {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: default;
+      transform: scale(1.2);
+      transition: cubic-bezier(0.6, 0.04, 0.98, 0.335) 0.2s;
+    }
+    .button a i {
+      font-size: 36px;
+    }
+    .heartImg {
+      transform: scale(1.06);
+      color: #f05146;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h3>Click Me!</h3>
+      <div class="button">
+        <a href="#" class="heart">
+          <i class="fas fa-heart"></i>
+        </a>
+      </div>
+    </div>
+  </body>
+  <script>
+    let heart = document.querySelector(".heart");
+    let heartImg = document.querySelector(".heart i");
+    heart.addEventListener("click", function () {
+      heart.classList.add("test");
+
+      setTimeout(function () {
+        heart.classList.remove("test");
+        heartImg.classList.toggle("heartImg");
+      }, 600);
+    });
+  </script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+  />
+</html>
